@@ -3,8 +3,8 @@ import { CreateTodoService } from "./CreateTodoService";
 
 export class CreateTodoController {
     async handle(request: Request, response: Response) {
-        
-        const { title, description, completed, id_owner, id_project } = request.body;
+        const { title, description, completed, id_owner, id_project } =
+            request.body;
 
         const createTodoService = new CreateTodoService();
         const result = await createTodoService.execute(

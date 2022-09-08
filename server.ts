@@ -1,6 +1,7 @@
 import { PrismaClient } from "@prisma/client";
 import express, { NextFunction, Request, Response } from "express";
 import "express-async-errors";
+import { AppError } from "./src/infra/errors/AppError";
 import { router } from "./src/infra/http/index.routes";
 
 const app = express();
@@ -11,14 +12,15 @@ app.use(router);
 
 app.use(
     (err: Error, request: Request, response: Response, next: NextFunction) => {
-        if (err instanceof Error) {
-            return response.status(400).json({
+        if (err instanceof AppError) {
+            return response.status(err.statusCode).json({
                 message: err.message,
             });
         }
+
         return response.status(500).json({
             status: "error",
-            message: "Internal server error",
+            message: `Internal server error - ${err.message}`,
         });
     }
 );

@@ -36,8 +36,8 @@ model Project {
     name         String
     description  String
     requirements String
-    id_maneger   String
-    manager      Manager  @relation(fields: [id_maneger], references: [id])
+    id_manager   String
+    manager      Manager  @relation(fields: [id_manager], references: [id])
     createdAt    DateTime @default(now())
     previousDate DateTime
     updatedAt    DateTime @default(now())
