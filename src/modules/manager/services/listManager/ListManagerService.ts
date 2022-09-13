@@ -9,7 +9,12 @@ export class ListManagerService {
             select: {
                 name: true,
                 department: true,
-                Projects: true,
+                Projects: {
+                    select: {
+                        id: true,
+                        name: true,
+                    },
+                },
             },
         });
 

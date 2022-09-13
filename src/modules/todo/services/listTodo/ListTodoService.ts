@@ -8,8 +8,18 @@ export class ListTodoService {
                 description: true,
                 createdAt: true,
                 completed: true,
-                owner: true,
-                project: true,
+                owner: {
+                    select: {
+                        id: true,
+                        name: true,
+                    },
+                },
+                project: {
+                    select: {
+                        id: true,
+                        name: true,
+                    },
+                },
             },
         });
 

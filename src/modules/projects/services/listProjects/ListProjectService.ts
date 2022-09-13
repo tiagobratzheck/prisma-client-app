@@ -12,8 +12,20 @@ export class ListProjectService {
                 requirements: true,
                 createdAt: true,
                 previousDate: true,
-                manager: true,
-                Todos: true,
+                manager: {
+                    select: {
+                        id: true,
+                        name: true,
+                    },
+                },
+                Todos: {
+                    select: {
+                        id: true,
+                        title: true,
+                        description: true,
+                        completed: true,
+                    },
+                },
             },
         });
 

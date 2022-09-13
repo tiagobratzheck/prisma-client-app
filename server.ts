@@ -3,12 +3,14 @@ import express, { NextFunction, Request, Response } from "express";
 import "express-async-errors";
 import { AppError } from "./src/infra/errors/AppError";
 import { router } from "./src/infra/http/index.routes";
+import { errors } from "celebrate";
 
 const app = express();
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(router);
+app.use(errors());
 
 app.use(
     (err: Error, request: Request, response: Response, next: NextFunction) => {
